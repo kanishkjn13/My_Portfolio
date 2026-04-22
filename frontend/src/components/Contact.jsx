@@ -18,7 +18,7 @@ export default function Contact() {
     setIsSubmitting(true);
     setStatusConfig(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/contact/", {
+      const res = await fetch("https://ashwin3031.pythonanywhere.com/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
