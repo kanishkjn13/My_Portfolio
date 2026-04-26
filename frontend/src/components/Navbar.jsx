@@ -30,8 +30,8 @@ export default function Navbar() {
       <div className="fixed top-6 left-6 md:left-10 z-[60]">
         <Link
           to="home"
-          smooth={true}
-          duration={500}
+          smooth={false}
+          duration={0}
           className="text-2xl font-bold font-poppins cursor-pointer text-white tracking-tighter drop-shadow-md hover:scale-105 transition-transform origin-left block"
           onClick={() => setIsMenuOpen(false)}
         >
@@ -66,8 +66,8 @@ export default function Navbar() {
                 key={item.id}
                 to={item.id}
                 spy={true}
-                smooth={true}
-                duration={500}
+                smooth={false}
+                duration={0}
                 onSetActive={() => setActiveItem(item.id)}
                 onMouseEnter={() => setHoverItem(item.id)}
                 className={`relative flex items-center justify-center gap-3 cursor-pointer transition-all duration-500 rounded-full z-10 group px-4 py-2 ${isActive ? "w-max" : "w-12 h-12 sm:w-14 sm:h-14"
@@ -125,8 +125,8 @@ export default function Navbar() {
           <Link
             to="contact"
             spy={true}
-            smooth={true}
-            duration={500}
+            smooth={false}
+            duration={0}
             onSetActive={() => setActiveItem("contact")}
             className={`w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full transition-all duration-500 cursor-pointer hover:scale-105 active:scale-95 relative ${activeItem === "contact"
               ? "bg-primary-500 shadow-[0_0_25px_rgba(59,130,246,0.8)] scale-110"
@@ -168,8 +168,8 @@ export default function Navbar() {
                   >
                     <Link
                       to={item.id}
-                      smooth={true}
-                      duration={500}
+                      smooth={false}
+                      duration={0}
                       onClick={() => setIsMenuOpen(false)}
                       className="flex items-center gap-4 text-3xl font-black font-space text-white uppercase tracking-tighter hover:text-primary-400 transition-colors"
                     >

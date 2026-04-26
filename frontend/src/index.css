@@ -65,3 +65,24 @@
   text-shadow: 0 0 10px rgba(96, 165, 250, 0.2), 0 0 20px rgba(167, 139, 250, 0.1);
 }
 
+/* Lenis Smooth Scroll Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+

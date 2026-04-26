@@ -26,28 +26,24 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-transparent relative overflow-hidden">
+    <section id="services" className="snap-section py-24 bg-transparent relative overflow-hidden">
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
 
         {/* Compact Modern Header */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3 mb-4"
-            >
+            <div className="gsap-reveal flex items-center gap-3 mb-4">
               <div className="h-[2px] w-8 bg-primary-400"></div>
               <span className="text-primary-400 uppercase tracking-[0.4em] font-bold text-[10px]">
                 OFFERING
               </span>
-            </motion.div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black font-space text-white tracking-tighter leading-[1.1]">
+            </div>
+            <h2 className="gsap-reveal text-3xl sm:text-4xl md:text-6xl font-black font-space text-white tracking-tighter leading-[1.1]">
               DEDICATED <span className="text-premium-gradient">SERVICES.</span>
             </h2>
           </div>
-          <p className="text-slate-500 text-sm md:text-right max-w-xs uppercase tracking-widest font-bold">
+          <p className="gsap-reveal text-slate-500 text-sm md:text-right max-w-xs uppercase tracking-widest font-bold">
             Focused on Quality, Performance, and User Experience.
           </p>
         </div>

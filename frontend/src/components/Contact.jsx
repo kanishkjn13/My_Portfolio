@@ -38,18 +38,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
+    <section id="contact" className="snap-section py-24 bg-transparent relative overflow-hidden">
       
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           
           {/* Left Side: Solid Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <div className="gsap-reveal">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-[2px] w-8 bg-primary-400"></div>
               <span className="text-primary-400 uppercase tracking-[0.4em] font-bold text-[10px]">
@@ -93,15 +89,10 @@ export default function Contact() {
 
 
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Side: High-End Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          <div className="gsap-reveal relative">
             {/* Subtle floating accent behind the card */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/10 rounded-full blur-[60px] pointer-events-none animate-pulse"></div>
 
@@ -180,7 +171,7 @@ export default function Contact() {
                 Or email directly: <a href="mailto:kanishkjn13@gmail.com" className="text-primary-400 hover:text-white transition-colors underline underline-offset-4 decoration-primary-500/30">kanishkjn13@gmail.com</a>
               </p>
             </form>
-          </motion.div>
+          </div>
 
         </div>
 

@@ -1,5 +1,10 @@
 import { useState, useEffect, Suspense, lazy } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import ProjectNavbar from "./components/ProjectNavbar";
@@ -24,6 +29,55 @@ function AppContent({ loading, setLoading }) {
       navigate("/", { replace: true });
     }
   }, [loading, navigate]);
+
+  // Lenis Smooth Scroll Setup
+  useEffect(() => {
+    if (loading) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0, 0);
+
+    // Global GSAP ScrollTrigger animations
+    const revealElements = document.querySelectorAll('.gsap-reveal');
+    revealElements.forEach((el) => {
+      gsap.fromTo(el,
+        { autoAlpha: 0, y: 30, scale: 0.98 },
+        {
+          duration: 1.2,
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            once: true
+          }
+        }
+      );
+    });
+
+    return () => {
+      lenis.destroy();
+      ScrollTrigger.killAll();
+    };
+  }, [loading]);
 
   return (
     <div className="bg-[#020617]">

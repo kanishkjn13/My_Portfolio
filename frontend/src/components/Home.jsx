@@ -12,6 +12,47 @@ const Contact = lazy(() => import("./Contact"));
 
 const SectionFallback = () => <div className="h-screen bg-transparent" />;
 
+const SplitHeroReveal = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const topY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "-50vh"]);
+  const bottomY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "50vh"]);
+  const aboutY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "100vh"]);
+
+  return (
+    <div className="relative">
+      <div ref={containerRef} className="absolute inset-0 w-full h-[200vh] pointer-events-none z-20">
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <motion.div
+            style={{ y: topY, clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 50%)' }}
+            className="absolute inset-0 bg-[#020617] pointer-events-auto transform-gpu will-change-transform"
+          >
+            <Hero />
+          </motion.div>
+          <motion.div
+            style={{ y: bottomY, clipPath: 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)' }}
+            className="absolute inset-0 bg-[#020617] pointer-events-auto transform-gpu will-change-transform"
+          >
+            <Hero isClone={true} />
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="relative z-10 bg-[#020617]">
+        <motion.div style={{ y: aboutY }}>
+          <About />
+        </motion.div>
+      </div>
+
+      <div className="h-screen w-full relative z-0 pointer-events-none"></div>
+    </div>
+  );
+};
+
 const ParallaxSection = ({ children, offset = 50 }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -47,12 +88,17 @@ export default function Home() {
   }, [hash]);
 
   return (
-    <Suspense fallback={<SectionFallback />}>
-      <ParallaxSection offset={0}><Hero /></ParallaxSection>
-      <ParallaxSection><About /></ParallaxSection>
-      <ParallaxSection><Projects /></ParallaxSection>
-      <ParallaxSection><Services /></ParallaxSection>
-      <ParallaxSection><Contact /></ParallaxSection>
-    </Suspense>
+    <div className="relative">
+      {/* Invisible scroll anchors for Navbar and Snap Points */}
+      <div id="home" className="absolute top-0 w-full h-px -z-10 pointer-events-none snap-section"></div>
+      <div id="about" className="absolute top-[100vh] w-full h-px -z-10 pointer-events-none snap-section"></div>
+
+      <Suspense fallback={<SectionFallback />}>
+        <SplitHeroReveal />
+        <Projects />
+        <ParallaxSection><Services /></ParallaxSection>
+        <ParallaxSection><Contact /></ParallaxSection>
+      </Suspense>
+    </div>
   );
 }

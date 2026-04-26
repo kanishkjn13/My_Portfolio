@@ -63,10 +63,9 @@ const skills = [
 
 export default function About() {
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center bg-transparent relative overflow-hidden pt-32 pb-20 md:pt-16 md:pb-2">
+    <section className="min-h-screen flex items-center justify-center bg-transparent relative overflow-hidden pt-32 pb-20 md:pt-16 md:pb-2">
 
-      {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-600/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+      {/* Removed heavy background glow for performance */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 

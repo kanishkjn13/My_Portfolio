@@ -11,7 +11,7 @@ const Typewriter = ({ words, delay = 100, deleteDelay = 50, pause = 1500 }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const fullWord = words[currentWordIndex];
-      
+
       if (!isDeleting) {
         if (currentText.length < fullWord.length) {
           setCurrentText(fullWord.substring(0, currentText.length + 1));
@@ -39,61 +39,67 @@ const Typewriter = ({ words, delay = 100, deleteDelay = 50, pause = 1500 }) => {
   );
 };
 
-export default function Hero() {
+export default function Hero({ id, isClone = false }) {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Background Decorative Gradients */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] bg-primary-600/20 rounded-full blur-[100px] -z-10 mix-blend-screen pointer-events-none"></div>
-      <div className="absolute top-1/4 right-0 w-[40vw] h-[40vw] bg-pink-600/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+    <section id={id} className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+      {/* Simplified Background for Performance */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] bg-primary-600/10 rounded-full blur-3xl -z-10 pointer-events-none transform-gpu"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 flex flex-col md:flex-row items-center justify-between">
 
         {/* Text Content */}
         <motion.div
-           className="w-full text-center mt-10 md:mt-0"
-           initial="hidden"
-           animate="visible"
-           variants={{
-             visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
-           }}
+          className="w-full text-center mt-10 md:mt-0"
+          initial={isClone ? "visible" : "hidden"}
+          animate="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+          }}
         >
           <motion.div
-             variants={{
-               hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
-               visible: { opacity: 1, y: 0, filter: "blur(0px)" }
-             }}
-             transition={{ duration: 0.8, ease: "easeOut" }}
-             className="text-xs uppercase tracking-[0.4em] font-bold text-slate-500 mb-6"
+            variants={{
+              hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
+              visible: { opacity: 1, y: 0, filter: "blur(0px)" }
+            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-xs uppercase tracking-[0.4em] font-bold text-slate-500 mb-6"
           >
-             Introduction
+            Introduction
           </motion.div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-space tracking-tighter leading-[1.1] mb-6 md:mb-8">
             <motion.span
-               variants={{
-                 hidden: { opacity: 0, y: 30, filter: "blur(12px)" },
-                 visible: { opacity: 1, y: 0, filter: "blur(0px)" }
-               }}
-               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-               className="text-premium-gradient block py-2 md:py-4 text-glow cursor-default relative z-10"
+              variants={{
+                hidden: { opacity: 0, y: 30, filter: "blur(12px)" },
+                visible: { opacity: 1, y: 0, filter: "blur(0px)" }
+              }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-premium-gradient block py-2 md:py-4 text-glow cursor-default relative z-10"
             >
               I’m Kanishk Jain
             </motion.span>
-            
+
             <motion.span
-               variants={{
-                 hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-                 visible: { opacity: 1, y: 0, filter: "blur(0px)" }
-               }}
-               transition={{ duration: 1, ease: "easeOut" }}
-               className="text-xl sm:text-2xl md:text-3xl font-bold font-poppins text-slate-400 block tracking-[0.1em] mt-2 h-8 md:h-10"
+              variants={{
+                hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
+                visible: { opacity: 1, y: 0, filter: "blur(0px)" }
+              }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="text-xl sm:text-2xl md:text-3xl font-bold font-poppins text-slate-400 block tracking-[0.1em] mt-2 h-8 md:h-10"
             >
-              <Typewriter 
-                words={[" Web Developer", "Full-Stack Developer", "UI/UX Specialist"]} 
-                delay={80}
-                deleteDelay={40}
-                pause={2000}
-              />
+              {isClone ? (
+                <span className="relative inline-flex items-center">
+                  Full-Stack Developer
+                  <span className="w-[3px] h-[1.2em] bg-primary-500 inline-block ml-2 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
+                </span>
+              ) : (
+                <Typewriter
+                  words={[" Web Developer", "Full-Stack Developer", "UI/UX Specialist"]}
+                  delay={80}
+                  deleteDelay={40}
+                  pause={2000}
+                />
+              )}
             </motion.span>
           </h1>
 
@@ -103,7 +109,7 @@ export default function Hero() {
               visible: { opacity: 1, y: 0 }
             }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-base sm:text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed font-light tracking-wide italic px-4"
+            className="text-base sm:text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto pt-8 md:pt-10 mb-10 md:mb-12 leading-relaxed font-light tracking-wide italic px-4"
           >
             I build fast, modern websites that help businesses grow and convert visitors into customers.
           </motion.p>
