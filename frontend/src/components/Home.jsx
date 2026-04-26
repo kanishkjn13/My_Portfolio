@@ -21,6 +21,7 @@ const SplitHeroReveal = () => {
 
   const topY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "-50vh"]);
   const bottomY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "50vh"]);
+  const splitScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
   const aboutY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "100vh"]);
 
   return (
@@ -28,13 +29,13 @@ const SplitHeroReveal = () => {
       <div ref={containerRef} className="absolute inset-0 w-full h-[200vh] pointer-events-none z-20">
         <div className="sticky top-0 h-screen overflow-hidden">
           <motion.div
-            style={{ y: topY, clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 50%)' }}
+            style={{ y: topY, scale: splitScale, clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 50%)' }}
             className="absolute inset-0 bg-[#020617] pointer-events-auto transform-gpu will-change-transform"
           >
             <Hero />
           </motion.div>
           <motion.div
-            style={{ y: bottomY, clipPath: 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)' }}
+            style={{ y: bottomY, scale: splitScale, clipPath: 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)' }}
             className="absolute inset-0 bg-[#020617] pointer-events-auto transform-gpu will-change-transform"
           >
             <Hero isClone={true} />

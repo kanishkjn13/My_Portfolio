@@ -109,7 +109,7 @@ export default function Hero({ id, isClone = false }) {
               visible: { opacity: 1, y: 0 }
             }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-base sm:text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto pt-8 md:pt-10 mb-10 md:mb-12 leading-relaxed font-light tracking-wide italic px-4"
+            className="text-base sm:text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto pt-12 md:pt-16 mb-10 md:mb-12 leading-relaxed font-light tracking-wide italic px-4"
           >
             I build fast, modern websites that help businesses grow and convert visitors into customers.
           </motion.p>

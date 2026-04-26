@@ -31,10 +31,6 @@ const allProjects = [
 ];
 
 export default function AllProjects() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#020617] text-white pt-32 pb-20 px-4 relative overflow-hidden">
       {/* Background Decorative Gradients */}

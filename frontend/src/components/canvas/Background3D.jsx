@@ -5,12 +5,14 @@ import * as random from "maath/random/dist/maath-random.esm";
 
 function StarBackground() {
   const ref = useRef();
-  // Using maath to spread points randomly inside a sphere geometry
-  const [sphere] = useState(() => random.inSphere(new Float32Array(15000), { radius: 10 }));
+  // Optimized star count for better performance
+  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 30;
-    ref.current.rotation.y -= delta / 40;
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 20;
+      ref.current.rotation.y -= delta / 30;
+    }
   });
 
   return (
@@ -19,10 +21,10 @@ function StarBackground() {
         <PointMaterial
           transparent
           color="#3b82f6"
-          size={0.015}
+          size={0.005}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.6}
+          opacity={0.4}
         />
       </Points>
     </group>
@@ -31,7 +33,7 @@ function StarBackground() {
 
 export default function Background3D() {
   return (
-    <div className="absolute inset-0 z-[-1] min-h-screen w-full bg-transparent overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 z-[-1] min-h-screen w-full bg-slate-950 overflow-hidden pointer-events-none">
       <Canvas camera={{ position: [0, 0, 1] }}>
         <StarBackground />
         <Preload all />

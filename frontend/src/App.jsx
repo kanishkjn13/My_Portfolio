@@ -44,6 +44,9 @@ function AppContent({ loading, setLoading }) {
       touchMultiplier: 2,
     });
 
+    // Reset scroll to top on every route change
+    lenis.scrollTo(0, { immediate: true });
+
     lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
@@ -77,7 +80,7 @@ function AppContent({ loading, setLoading }) {
       lenis.destroy();
       ScrollTrigger.killAll();
     };
-  }, [loading]);
+  }, [loading, location.pathname]); // Listen to pathname changes
 
   return (
     <div className="bg-[#020617]">
