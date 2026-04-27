@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import KraftMagicImg from "../assets/craftmagic.png";
 import ResumeVisionImg from "../assets/resumevision.png";
+import ProoflyAiImg from "../assets/proofly_dashboard.png";
 
 const projects = [
   {
     id: "01",
-    title: "Upcoming Project",
-    description: "A high-performance web application currently in development. Coming soon.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-    tech: ["Next.js", "AI", "Cloud"],
-    demoLink: "#",
-    githubLink: "#",
-    accent: "from-purple-600/20 to-pink-600/20"
+    title: "Proofly AI",
+    description: "Master your learning journey. Join thousands of students and unlock a world of knowledge, community, and personal growth with AI-powered tools.",
+    image: ProoflyAiImg,
+    tech: ["React", "Django", "Three.js", "Groq AI"],
+    demoLink: "https://prooflyai.netlify.app/",
+    githubLink: "https://github.com/kanishkjn13/Proofly_ai",
+    accent: "from-indigo-600/20 to-purple-600/20"
   },
   {
     id: "02",
@@ -25,7 +26,7 @@ const projects = [
     image: ResumeVisionImg,
     tech: ["React", "AI/ML", "Node.js"],
     demoLink: "https://resumevisionai.netlify.app/",
-    githubLink: "#",
+    githubLink: "https://github.com/iamashwinmukati30/ResumeVisionAI",
     accent: "from-blue-600/20 to-cyan-600/20"
   },
   {
@@ -34,8 +35,8 @@ const projects = [
     description: "Developed a custom e-commerce platform for handcrafted products with a smooth UI and optimized performance.",
     image: KraftMagicImg,
     tech: ["React", "Django", "Tailwind"],
-    demoLink: "https://thecraftmagic.vercel.app/",
-    githubLink: "#",
+    demoLink: "https://thekraftmagic.vercel.app/",
+    githubLink: "https://github.com/kanishkjn13/TheKraftMagic",
     accent: "from-amber-600/20 to-orange-600/20"
   }
 ];
@@ -52,7 +53,7 @@ const ProjectCard = ({ project, index, total }) => {
 
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, targetScale]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 1, 1]);
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], project.id === "01" ? ["-2%", "2%"] : ["-10%", "10%"]);
 
   return (
     <div ref={cardRef} className="h-screen w-full sticky top-0 flex items-center justify-center pt-28 pb-10 px-4 md:px-0 z-10" style={{ perspective: "1500px" }}>
@@ -77,7 +78,9 @@ const ProjectCard = ({ project, index, total }) => {
                 style={{ y: imageY }}
                 src={project.image}
                 alt={project.title}
-                className="absolute inset-0 w-full h-[120%] object-cover transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0"
+                className={`absolute inset-0 w-full transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0 ${
+                  project.id === "01" ? "h-full object-contain p-6" : "h-[120%] object-cover"
+                }`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050b1e] via-[#050b1e]/20 to-transparent opacity-90 transition-opacity duration-500"></div>
 

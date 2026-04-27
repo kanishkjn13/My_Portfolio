@@ -6,26 +6,37 @@ import { Link } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import KraftMagicImg from "../assets/craftmagic.png";
 import ResumeVisionImg from "../assets/resumevision.png";
+import ProoflyAiImg from "../assets/proofly_dashboard.png";
 
 const allProjects = [
   {
     id: "01",
+    title: "Proofly AI",
+    description: "Master your learning journey. Join thousands of students and unlock a world of knowledge, community, and personal growth with AI-powered tools.",
+    image: ProoflyAiImg,
+    tech: ["React", "Django", "Three.js", "Groq AI"],
+    demoLink: "https://prooflyai.netlify.app/",
+    githubLink: "https://github.com/kanishkjn13/Proofly_ai",
+    accent: "from-indigo-600/20 to-purple-600/20"
+  },
+  {
+    id: "02",
     title: "ResumeVisionAI",
     description: "Built an AI-powered resume analyzer that improves ATS scores and provides actionable feedback for job seekers.",
     image: ResumeVisionImg,
     tech: ["React", "AI/ML", "Node.js"],
     demoLink: "https://resumevisionai.netlify.app/",
-    githubLink: "#",
+    githubLink: "https://github.com/iamashwinmukati30/ResumeVisionAI",
     accent: "from-blue-600/20 to-cyan-600/20"
   },
   {
-    id: "02",
+    id: "03",
     title: "The Kraft Magic",
     description: "Developed a custom e-commerce platform for handcrafted products with a smooth UI and optimized performance.",
     image: KraftMagicImg,
     tech: ["React", "Django", "Tailwind"],
-    demoLink: "https://thecraftmagic.vercel.app/",
-    githubLink: "#",
+    demoLink: "https://thekraftmagic.vercel.app/",
+    githubLink: "https://github.com/kanishkjn13/TheKraftMagic",
     accent: "from-amber-600/20 to-orange-600/20"
   },
 ];
@@ -70,7 +81,15 @@ export default function AllProjects() {
               <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} className="h-full">
                 <div className="group relative h-full glass-card rounded-[32px] overflow-hidden border border-white/5 flex flex-col hover:border-primary-500/30 transition-colors duration-500">
                   <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="relative aspect-[16/10] overflow-hidden rounded-t-[32px] cursor-pointer">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" />
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className={`w-full h-full transform transition-transform duration-700 ${
+                        project.id === "01" 
+                          ? "object-contain p-4 group-hover:scale-105" 
+                          : "object-cover group-hover:scale-110"
+                      }`} 
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60"></div>
                     <div className="absolute bottom-4 right-4 w-10 h-10 rounded-xl glass flex items-center justify-center text-white border border-white/20 z-20 group-hover:bg-primary-500 transition-colors duration-300">
                       <ArrowUpRight size={18} />
